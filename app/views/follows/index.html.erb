@@ -16,8 +16,20 @@
 
       <% @follows.each do |follow| %>
       <tr>
-        <td><%= follow.sender.email %></td>
-        <td><%= follow.recipient.email %></td>
+        <td>
+          <% if follow.sender.present? %>
+            <a href="/users/<%= follow.sender.id %>">
+              <%= follow.sender.email %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if follow.recipient.present? %>
+            <a href="/users/<%= follow.recipient.id %>">
+              <%= follow.recipient.email %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/follows/<%= follow.id %>" class="btn btn-primary">Show</a>
           <a href="/follows/<%= follow.id %>/edit" class="btn btn-warning">Edit</a>
