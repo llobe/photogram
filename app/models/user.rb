@@ -19,6 +19,14 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :followers,
+             :through => :received_follows,
+             :source => :sender
+
+  has_many   :followings,
+             :through => :sent_follows,
+             :source => :recipient
+
   # Validations
 
   # Include default devise modules. Others available are:
